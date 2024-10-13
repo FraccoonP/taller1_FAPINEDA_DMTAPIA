@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "MaterialBibliografico.h"
 
 class Libro : public MaterialBibliografico {

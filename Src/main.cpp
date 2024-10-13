@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Biblioteca.h"
-#include "Libro.h"  
-#include "Revista.h"
+#include "Include/Biblioteca.h"
+#include "Include/Libro.h"  
+#include "Include/Revista.h"
 
 void mostrarMenu() {
     std::cout << "1. Agregar Libro\n";

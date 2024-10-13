@@ -1,4 +1,4 @@
-#include "Revista.h"
+#include "Include/Revista.h"
 #include <iostream>
 
 Revista::Revista(const std::string& nombre, const std::string& isbn, const std::string& autor, const std::string& fechaPublicacion, int numeroEdicion)

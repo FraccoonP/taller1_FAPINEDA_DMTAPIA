@@ -15,6 +15,7 @@ public:
     bool devolverMaterial(const std::string& isbn);
 
 private:
+    //Array con las revistas y libros
     std::vector<MaterialBibliografico*> materiales;
 };
 

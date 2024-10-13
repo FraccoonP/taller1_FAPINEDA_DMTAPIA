@@ -8,6 +8,6 @@ private:
 
 public:
     Libro(const std::string& nombre, const std::string& isbn, const std::string& autor, const std::string& fechaPublicacion, const std::string& resumen);
-    virtual void mostrarInformacion() const override;
+    void mostrarInformacion() const override;
 };
 

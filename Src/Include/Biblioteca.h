@@ -9,13 +9,14 @@ public:
     Biblioteca();
     ~Biblioteca();
 
-    void agregarMaterial(MaterialBibliografico* material);
+    int contarMaterialesEnArchivo() const;
+    void agregarMaterial(const std::string& nombre,const std::string& isbn,const std::string& autor, const std::string& fecha,const std::string& resuOrEd, bool libro);
     void listarMateriales() const;
     bool prestarMaterial(const std::string& isbn);
     bool devolverMaterial(const std::string& isbn);
 
 private:
     //Array con las revistas y libros
-    std::vector<MaterialBibliografico*> materiales;
+    MaterialBibliografico* biblioteca[10];
 };
 

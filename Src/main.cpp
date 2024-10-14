@@ -1,6 +1,7 @@
 #include <iostream>
+#include <limits>  // Para limpiar el flujo de entrada
 #include "Include/Biblioteca.h"
-#include "Include/Libro.h"  
+#include "Include/Libro.h"
 #include "Include/Revista.h"
 
 void mostrarMenu() {
@@ -18,31 +19,33 @@ int main() {
 
     do {
         mostrarMenu();
-        std::cout << "Seleccione una opción: ";
+        std::cout << "Seleccione una opcion: ";
         std::cin >> opcion;
+
+        // Limpiar flujo de entrada después de leer un número
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch(opcion) {
             case 1: {
                 // Agregar un libro
                 std::string nombre, isbn, autor, fecha, resumen;
-                std::cout << "Ingrese nombre: "; std::cin >> nombre;
-                std::cout << "Ingrese ISBN: "; std::cin >> isbn;
-                std::cout << "Ingrese autor: "; std::cin >> autor;
-                std::cout << "Ingrese fecha de publicación: "; std::cin >> fecha;
-                std::cout << "Ingrese resumen: "; std::cin >> resumen;
-                biblioteca.agregarMaterial(new Libro(nombre, isbn, autor, fecha, resumen));
+                std::cout << "Ingrese nombre: "; std::getline(std::cin, nombre);
+                std::cout << "Ingrese ISBN: "; std::getline(std::cin, isbn);
+                std::cout << "Ingrese autor: "; std::getline(std::cin, autor);
+                std::cout << "Ingrese fecha de publicacion: "; std::getline(std::cin, fecha);
+                std::cout << "Ingrese resumen: "; std::getline(std::cin, resumen);
+                biblioteca.agregarMaterial(nombre, isbn, autor, fecha, resumen, true);
                 break;
             }
             case 2: {
                 // Agregar una revista
-                std::string nombre, isbn, autor, fecha;
-                int numeroEdicion;
-                std::cout << "Ingrese nombre: "; std::cin >> nombre;
-                std::cout << "Ingrese ISBN: "; std::cin >> isbn;
-                std::cout << "Ingrese autor: "; std::cin >> autor;
-                std::cout << "Ingrese fecha de publicación: "; std::cin >> fecha;
-                std::cout << "Ingrese número de edición: "; std::cin >> numeroEdicion;
-                biblioteca.agregarMaterial(new Revista(nombre, isbn, autor, fecha, numeroEdicion));
+                std::string nombre, isbn, autor, fecha, numeroEdicion;
+                std::cout << "Ingrese nombre: "; std::getline(std::cin, nombre);
+                std::cout << "Ingrese ISBN: "; std::getline(std::cin, isbn);
+                std::cout << "Ingrese autor: "; std::getline(std::cin, autor);
+                std::cout << "Ingrese fecha de publicacion: "; std::getline(std::cin, fecha);
+                std::cout << "Ingrese numero de edicion: "; std::getline(std::cin, numeroEdicion);
+                biblioteca.agregarMaterial(nombre, isbn, autor, fecha, numeroEdicion, false);
                 break;
             }
             case 3: {
@@ -53,14 +56,14 @@ int main() {
             case 4: {
                 // Prestar material
                 std::string isbn;
-                std::cout << "Ingrese ISBN del material a prestar: "; std::cin >> isbn;
+                std::cout << "Ingrese ISBN del material a prestar: "; std::getline(std::cin, isbn);
                 biblioteca.prestarMaterial(isbn);
                 break;
             }
             case 5: {
                 // Devolver material
                 std::string isbn;
-                std::cout << "Ingrese ISBN del material a devolver: "; std::cin >> isbn;
+                std::cout << "Ingrese ISBN del material a devolver: "; std::getline(std::cin, isbn);
                 biblioteca.devolverMaterial(isbn);
                 break;
             }
@@ -70,7 +73,7 @@ int main() {
                 break;
             }
             default: {
-                std::cout << "Opción no válida. Intente de nuevo.\n";
+                std::cout << "Opcion no válida. Intente de nuevo.\n";
                 break;
             }
         }

@@ -1,15 +1,18 @@
 #include "Include/Revista.h"
 #include <iostream>
 
-Revista::Revista(const std::string& nombre, const std::string& isbn, const std::string& autor, const std::string& fechaPublicacion, int numeroEdicion)
-    : MaterialBibliografico(nombre, isbn, autor, fechaPublicacion), numeroEdicion(numeroEdicion) {}
+Revista::Revista(const std::string& nombre, const std::string& isbn, const std::string& autor, const std::string& fechaPublicacion, int numeroEdicion, bool prestado)
+    : MaterialBibliografico(nombre, isbn, autor, fechaPublicacion), numeroEdicion(numeroEdicion) {
+    this->prestado = prestado; // Inicializar el estado prestado
+}
 
+// Método para mostrar la información de la revista
 void Revista::mostrarInformacion() const {
-    std::cout << "Revista: " << nombre << "\n"
-              << "ISBN: " << isbn << "\n"
-              << "Autor: " << autor << "\n"
-              << "Fecha de Publicación: " << fechaPublicacion << "\n"
-              << "Número de Edición: " << numeroEdicion << "\n"
-              << (prestado ? "Estado: Prestado\n" : "Estado: Disponible\n")
-              << "----------------------------------------\n";
+    std::cout << "Título: " << nombre 
+              << "\nISBN: " << isbn 
+              << "\nAutor: " << autor 
+              << "\nFecha de Publicación: " << fechaPublicacion 
+              << "\nNúmero de Edición: " << numeroEdicion 
+              << "\nEstado: " << (estaPrestado() ? "Prestado" : "Disponible") 
+              << "\n----------------------------------------\n";
 }

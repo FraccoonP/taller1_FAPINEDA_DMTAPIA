@@ -108,3 +108,65 @@ bool Biblioteca::devolverMaterial(const std::string& isbn) {
     std::cout << "Material con ISBN " << isbn << " no encontrado.\n";
     return false;
 }
+
+void Biblioteca::agregarUsuario(const Usuario& usuario) {
+    usuarios.push_back(usuario);
+    std::cout << "Usuario agregado con éxito.\n";
+}
+
+Usuario* Biblioteca::buscarUsuario(int id) {
+    for (Usuario& usuario : usuarios) {
+        if (usuario.getId() == id) {
+            return &usuario;  // Devuelve un puntero al usuario encontrado
+        }
+    }
+    return nullptr;  // Si no encuentra el usuario, devuelve nullptr
+}
+
+bool Biblioteca::eliminarUsuario(int id) {
+    for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
+        if (it->getId() == id) {
+            usuarios.erase(it);
+            return true;  // Usuario eliminado con éxito
+        }
+    }
+    return false;  // Usuario no encontrado
+}
+
+void Biblioteca::listarUsuarios() const {
+    if (usuarios.empty()) {
+        std::cout << "No hay usuarios en la biblioteca.\n";
+        return;
+    }
+    for (const Usuario& usuario : usuarios) {
+        std::cout << "Usuario: " << usuario.getNombre() << ", ID: " << usuario.getId() << '\n';
+    }
+}
+
+// Funciones para guardar y cargar usuarios
+void Biblioteca::guardarUsuarios(const std::string& archivoUsuarios) const {
+    std::ofstream out(archivoUsuarios);
+    if (!out) {
+        std::cerr << "Error al abrir el archivo de usuarios para escribir.\n";
+        return;
+    }
+    for (const Usuario& usuario : usuarios) {
+        usuario.guardarUsuario(out);  // Guardar cada usuario en el archivo
+    }
+    out.close();
+}
+
+void Biblioteca::cargarUsuarios(const std::string& archivoUsuarios) {
+    std::ifstream in(archivoUsuarios);
+    if (!in) {
+        std::cerr << "Error al abrir el archivo de usuarios para leer.\n";
+        return;
+    }
+    while (in) {
+        Usuario usuario = Usuario::cargarUsuario(in);  // Cargar cada usuario
+        if (!usuario.getNombre().empty()) {
+            agregarUsuario(usuario);
+        }
+    }
+    in.close();
+}

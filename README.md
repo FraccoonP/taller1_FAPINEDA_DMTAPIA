@@ -1,7 +1,10 @@
 # taller1_FAPINEDA_DMTAPIA
 Taller 1 Estructura de datos
+
 Franco Alejandro Pineda Ibacache, 15.166.631-0, franco.pineda@alumnos.ucn.cl, C2
+
 Darwin Mauricio Tapia Urrutia, 21.599.630-1, darwin.tapia@alumnos.ucn.cl, C2
+
 Para poder ejecutar el programa hay que hacer lo siguiente:
 En la terminal irse a la carpeta donde se localiza el programa
 ,escribir y luego ejecutar lo siguiente: g++ *.cpp -o main.exe (para que inicien todos los archivos .cpp),ahora ejecutar el exe con ./main.exe

@@ -1,5 +1,38 @@
 #include "Include/Usuario.h"
 #include <iostream>
+#include <fstream>
+
+Usuario::Usuario(const std::string& nombre, int id)
+    : nombre(nombre), id(id) {}
+
+std::string Usuario::getNombre() const {
+    return nombre;
+}
+
+int Usuario::getId() const {
+    return id;
+}
+
+void Usuario::setNombre(const std::string& nombre) {
+    this->nombre = nombre;
+}
+
+void Usuario::setId(int id) {
+    this->id = id;
+}
+
+void Usuario::guardarUsuario(std::ofstream& out) const {
+    out << nombre << '\n' << id << '\n';  // Guardar el nombre y el ID como int
+}
+
+Usuario Usuario::cargarUsuario(std::ifstream& in) {
+    std::string nombre;
+    int id;
+    std::getline(in, nombre);  // Leer el nombre
+    in >> id;                  // Leer el ID como int
+    in.ignore();               // Ignorar el salto de línea después del ID
+    return Usuario(nombre, id);
+}
 
 // Implementación del método prestarMaterial
 void Usuario::prestarMaterial(MaterialBibliografico* material) {
